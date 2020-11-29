@@ -18,7 +18,7 @@ CORS(app)
 def add_task():
     data=request.get_json()
     db['to-do'].insert_one(data)
-    return data
+    return dumps(data)
 
 @app.route('/get_tasks')
 def get_all_tasks():
