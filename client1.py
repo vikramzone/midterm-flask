@@ -11,7 +11,7 @@ client = MongoClient('localhost', 27017)
 db = client.mydb
 
 app = Flask(__name__) # initialize the flask app
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 
