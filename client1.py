@@ -12,6 +12,7 @@ db = client.mydb
 
 app = Flask(__name__) # initialize the flask app
 CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 @app.route('/add_task',methods=['POST'])
