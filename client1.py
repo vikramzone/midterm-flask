@@ -1,7 +1,8 @@
 
-from flask import Flask, request, jsonify, Response
+from flask import Flask, request, jsonify
 from pymongo import MongoClient
 from bson.json_util import dumps
+from flask_cors import CORS
 
 
 #connect to database
@@ -9,14 +10,8 @@ client = MongoClient('localhost', 27017)
 db = client.mydb
 
 app = Flask(__name__) # initialize the flask app
+CORS(app)
 
-
-@app.after_request
-def after_request(response):
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
-    return response
 
 @app.route('/add_task',methods=['POST'])
 def add_task():
