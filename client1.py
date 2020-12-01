@@ -2,7 +2,7 @@
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
 from bson.json_util import dumps
-from flask_cors import cross_origin
+from flask_cors import cross_origin, CORS
 
 
 
@@ -11,7 +11,7 @@ client = MongoClient('localhost', 27017)
 db = client.mydb
 
 app = Flask(__name__) # initialize the flask app
-
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 @app.route('/add_task',methods=['POST'])
 @cross_origin()
